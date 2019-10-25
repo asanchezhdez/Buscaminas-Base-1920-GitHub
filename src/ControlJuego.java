@@ -49,6 +49,7 @@ public class ControlJuego {
 			}
 		}
 		
+		
 		//Repartir minas.
 		while(contador<MINAS_INICIALES) {
 			posX=(int)rd.nextFloat()*LADO_TABLERO;
@@ -69,6 +70,12 @@ public class ControlJuego {
 				}
 			}
 		}
+		for (int i = 0; i < LADO_TABLERO; i++) {
+			for (int j = 0; j < LADO_TABLERO; j++) {
+				System.out.print(tablero[i][j]+" ");
+			}
+			System.out.println("");
+		}
 	}
 	
 	/**Cálculo de las minas adjuntas: 
@@ -81,28 +88,32 @@ public class ControlJuego {
 	 **/
 	private int calculoMinasAdjuntas(int i, int j){
 		int contador=0;
-		int i_Inicio=0;
-		int i_Final=0;
-		int j_Inicio=0;
-		int j_Final=0;
-		if((i-1)<0) {
-			i=1;
+		int i_Inicio=i-1;
+		int i_Final=i+1;
+		int j_Inicio=j-1;
+		int j_Final=j+1;
+		
+		
+		if(i_Inicio<0) {
+			i_Inicio=0;
 		}
-		if((j-1)<0) {
-			j=1;
+		if(i_Final<9) {
+			i_Final=9;
 		}
-		if((i+1)>9) {
-			i=8;
+		if(j_Inicio<0) {
+			j_Inicio=0;
 		}
-		if((j+1)>9) {
-			j=8;
+		if(j_Final>9) {
+			j_Final=9;
 		}
-		for (int i2 = i-1; i2 <= i+1; i++) {
-			for (int j2 = j-1; j2 <= j+1; j++) {
-				if(tablero[i2][j2]==MINA) {
+		while(i_Inicio<i_Final) {
+			while(j_Inicio<j_Final) {
+				if(tablero[i_Inicio][j_Inicio]==MINA) {
 					contador++;
 				}
+				j_Inicio++;
 			}
+			i_Inicio++;
 		}
 		return contador;
 	}
