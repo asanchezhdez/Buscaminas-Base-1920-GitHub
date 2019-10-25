@@ -70,12 +70,8 @@ public class ControlJuego {
 				}
 			}
 		}
-		for (int i = 0; i < LADO_TABLERO; i++) {
-			for (int j = 0; j < LADO_TABLERO; j++) {
-				System.out.print(tablero[i][j]+" ");
-			}
-			System.out.println("");
-		}
+		//Pintar tablero por pantalla
+		depurarTablero();
 	}
 	
 	/**Cálculo de las minas adjuntas: 
@@ -97,7 +93,7 @@ public class ControlJuego {
 		if(i_Inicio<0) {
 			i_Inicio=0;
 		}
-		if(i_Final<9) {
+		if(i_Final>9) {
 			i_Final=9;
 		}
 		if(j_Inicio<0) {
@@ -106,8 +102,10 @@ public class ControlJuego {
 		if(j_Final>9) {
 			j_Final=9;
 		}
-		while(i_Inicio<i_Final) {
-			while(j_Inicio<j_Final) {
+		int j_InicioAux=j_Inicio;
+		while(i_Inicio<=i_Final) {
+			j_Inicio = j_InicioAux;
+			while(j_Inicio<=j_Final) {
 				if(tablero[i_Inicio][j_Inicio]==MINA) {
 					contador++;
 				}
@@ -126,6 +124,7 @@ public class ControlJuego {
 	 * @return : Verdadero si no ha explotado una mina. Falso en caso contrario.
 	 */
 	public boolean abrirCasilla(int i, int j){
+		
 		return false;
 	}
 	
@@ -162,7 +161,7 @@ public class ControlJuego {
 	 * @return Un entero que representa el número de minas alrededor de la celda
 	 */
 	public int getMinasAlrededor(int i, int j) {
-		return 0;
+		return tablero[i][j];
 	}
 
 	/**

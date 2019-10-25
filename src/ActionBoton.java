@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
  **
  */
 public class ActionBoton implements ActionListener{
-
+	VentanaPrincipal ventana;
+	int i;
+	int j;
 	
 
 	public ActionBoton() {
