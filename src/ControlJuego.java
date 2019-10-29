@@ -124,8 +124,12 @@ public class ControlJuego {
 	 * @return : Verdadero si no ha explotado una mina. Falso en caso contrario.
 	 */
 	public boolean abrirCasilla(int i, int j){
-		
-		return false;
+		if(tablero[i][j]!=MINA) {
+			puntuacion++;
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	
@@ -135,7 +139,11 @@ public class ControlJuego {
 	 * @return Devuelve verdadero si se han abierto todas las celdas que no son minas.
 	 **/
 	public boolean esFinJuego(){
-		return false;
+		if(puntuacion==(LADO_TABLERO*LADO_TABLERO)-MINAS_INICIALES) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	
@@ -169,7 +177,7 @@ public class ControlJuego {
 	 * @return Un entero con la puntuación actual
 	 */
 	public int getPuntuacion() {
-		return 0;
+		return puntuacion;
 	}
 	
 }
