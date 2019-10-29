@@ -15,8 +15,10 @@ public class ActionBoton implements ActionListener{
 	int j;
 	
 
-	public ActionBoton() {
-		//TODO
+	public ActionBoton(VentanaPrincipal ventana,int i,int j) {
+		this.ventana = ventana;
+		this.i=i;
+		this.j=j;
 	}
 	
 	/**
@@ -24,7 +26,12 @@ public class ActionBoton implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//TODO
+		if(ventana.juego.abrirCasilla(i, j)) {
+			ventana.mostrarNumMinasAlrededor(i, i);
+		}else {
+			ventana.mostrarFinJuego(true);
+		}
+		
 	}
 
 }
