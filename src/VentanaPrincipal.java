@@ -2,8 +2,6 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -139,7 +137,8 @@ public class VentanaPrincipal {
 	 * Método que inicializa todos los lísteners que necesita inicialmente el programa
 	 */
 	public void inicializarListeners(){
-		//TODO
+		
+		
 	}
 	
 	
@@ -156,7 +155,13 @@ public class VentanaPrincipal {
 	 * @param j: posición horizontal de la celda.
 	 */
 	public void mostrarNumMinasAlrededor(int i , int j) {
-		//TODO
+		int num=juego.getMinasAlrededor(i, j);
+		panelesJuego[i][j].removeAll();
+		JLabel aux= new JLabel();
+		aux.setText(Integer.toString(num));
+		aux.setForeground(correspondenciaColores[num]);
+		panelesJuego[i][j].add(aux);
+		refrescarPantalla();
 	}
 	
 	
@@ -166,14 +171,27 @@ public class VentanaPrincipal {
 	 * @post : Todos los botones se desactivan excepto el de volver a iniciar el juego.
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
-		//TODO
+		if(porExplosion) {
+			new JOptionPane();
+			JOptionPane.showMessageDialog(null, "Ha perdido la partida por pinchar una mina", "Pantalla Fin", 1);
+		}else {
+			new JOptionPane();
+			JOptionPane.showMessageDialog(null, "HA GANADO LA PARTIDA!!!!!", "Pantalla Fin", 1);
+		}
+		//Bucle para descativar todos los botones.
+		for (int i = 0; i < botonesJuego.length; i++) {
+			for (int j = 0; j < botonesJuego.length; j++) {
+				botonesJuego[i][j].setEnabled(false);
+			}
+		}
+		refrescarPantalla();
 	}
 
 	/**
 	 * Método que muestra la puntuación por pantalla.
 	 */
 	public void actualizarPuntuacion() {
-		//TODO
+		pantallaPuntuacion.setText(Integer.toString(juego.getPuntuacion()));
 	}
 	
 	/**
