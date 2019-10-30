@@ -143,14 +143,16 @@ public class VentanaPrincipal {
 		botonEmpezar.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ventana.removeAll();
-				inicializar();
-				refrescarPantalla();
-				for (int i = 0; i < botonesJuego.length; i++) {
-					for (int j = 0; j < botonesJuego.length; j++) {
+				pantallaPuntuacion.setText("0");
+				for (int i = 0; i < panelesJuego.length; i++) {
+					for (int j = 0; j < panelesJuego.length; j++) {
+						panelesJuego[i][j].removeAll();
+						panelesJuego[i][j].add(botonesJuego[i][j]);
 						botonesJuego[i][j].setEnabled(true);
 					}
 				}
+				refrescarPantalla();
+				juego.inicializarPartida();
 			}
 		});
 		for (int i = 0; i < botonesJuego.length; i++) {
@@ -192,7 +194,7 @@ public class VentanaPrincipal {
 	public void mostrarFinJuego(boolean porExplosion) {
 		if(porExplosion) {
 			new JOptionPane();
-			JOptionPane.showMessageDialog(null, "Ha perdido la partida por pinchar una mina", "Pantalla Fin", 1);
+			JOptionPane.showMessageDialog(null, "Has perdido la partida por pinchar una mina", "Pantalla Fin", 1);
 		}else {
 			new JOptionPane();
 			JOptionPane.showMessageDialog(null, "HA GANADO LA PARTIDA!!!!!", "Pantalla Fin", 1);

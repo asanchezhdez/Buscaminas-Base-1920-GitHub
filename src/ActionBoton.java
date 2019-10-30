@@ -28,6 +28,7 @@ public class ActionBoton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(ventana.juego.abrirCasilla(i, j)) {
 			ventana.mostrarNumMinasAlrededor(i, i);
+			ventana.actualizarPuntuacion();
 		}else {
 			ventana.mostrarFinJuego(true);
 		}
