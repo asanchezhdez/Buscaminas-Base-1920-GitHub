@@ -236,11 +236,39 @@ public class VentanaPrincipal {
 	 */
 	public void inicializar(){
 		//IMPORTANTE, PRIMERO HACEMOS LA VENTANA VISIBLE Y LUEGO INICIALIZAMOS LOS COMPONENTES.
-		ventana.setVisible(true);
 		inicializarComponentes();	
 		inicializarListeners();		
+		ventana.setVisible(true);
 	}
-
+	public void abrirAlrededor(int posI,int posJ) {
+		int i_Inicio = posI-1;
+		int i_Final = posI+1;
+		int j_Inicio=posJ-1;
+		int j_Final=posJ+1;
+		
+		if(i_Inicio<0) {
+			i_Inicio=0;
+		}
+		if(j_Inicio<0) {
+			j_Inicio=0;
+		}
+		if(i_Final>9) {
+			i_Final=9;
+		}
+		if(j_Final>9) {
+			j_Final=9;
+		}
+		
+		int j_InicioAux=j_Inicio;//Variable para controlar que el bucle no se salga
+		while(i_Inicio<=i_Final) {
+			j_Inicio=j_InicioAux;
+			while(j_Inicio<=j_Final) {
+				if(panelesJuego[i_Inicio][j_Inicio].getComponent(0).getClass() == JButton.class) {
+					botonesJuego[i_Inicio][j_Inicio].doClick();
+				}
+			}
+		}
+	}
 
 
 }
