@@ -15,6 +15,19 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 
+/**
+ * <p> Esta clase inicializara los elementos de la interfaz e inicializara los listeners</p>
+ * 
+ * @author Alvaro Sanchez Hernandez
+ * {@link #inicializar()}
+ * @author Alvaro Sanchez Hernandez
+ * @version 1.3
+ * @since 26/10/2019
+ * @see #juego
+ * {@code inicializarComponentes();	
+		inicializarListeners();		
+		ventana.setVisible(true);}
+ */
 public class VentanaPrincipal {
 
 	//La ventana principal, en este caso, guarda todos los componentes:
@@ -240,6 +253,13 @@ public class VentanaPrincipal {
 		inicializarListeners();		
 		ventana.setVisible(true);
 	}
+	/**
+	 * 
+	 * @param posI: Indica la fila del tablero de la casilla.
+	 * @param posJ: Indica la columna del tablero de la casilla.
+	 * Método que recorre las casillas del alrededor de las posiciones que nos llegan como parámetros.
+	 * Controla que no estemos en los límites del tablero.
+	 */
 	public void abrirAlrededor(int posI,int posJ) {
 		int i_Inicio = posI-1;
 		int i_Final = posI+1;
@@ -258,13 +278,21 @@ public class VentanaPrincipal {
 		if(j_Final>9) {
 			j_Final=9;
 		}
-		
+		try {
+			panelImagen.setBackground(Color.GREEN);
+			Thread.sleep(500);
+		}catch(InterruptedException ie) {
+			System.out.println(ie.getMessage());
+			ie.printStackTrace();
+		}
+		panelImagen.setBackground(Color.WHITE);
 		int j_InicioAux=j_Inicio;//Variable para controlar que el bucle no se salga
 		while(i_Inicio<=i_Final) {
 			j_Inicio=j_InicioAux;
 			while(j_Inicio<=j_Final) {
 				if(panelesJuego[i_Inicio][j_Inicio].getComponent(0).getClass() == JButton.class) {
 					botonesJuego[i_Inicio][j_Inicio].doClick();
+					
 				}
 			}
 		}

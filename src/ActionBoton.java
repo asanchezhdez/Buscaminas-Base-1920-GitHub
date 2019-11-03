@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,9 +32,17 @@ public class ActionBoton implements ActionListener{
 			if(ventana.juego.getMinasAlrededor(i, j)==0) {
 				ventana.abrirAlrededor(i, j);
 			}
-			ventana.actualizarPuntuacion();	
+			ventana.actualizarPuntuacion();
+			//Comprobamos si se ha llegado al límite de puntuacion
+			if(ventana.getJuego().getPuntuacion()==(ventana.getJuego().LADO_TABLERO)*(ventana.getJuego().LADO_TABLERO)-ventana.getJuego().MINAS_INICIALES) {
+				ventana.panelImagen.setBackground(Color.GREEN);
+				ventana.mostrarFinJuego(false);
+				ventana.panelImagen.setBackground(Color.WHITE);
+			}
 		}else {
+			ventana.panelImagen.setBackground(Color.RED);
 			ventana.mostrarFinJuego(true);
+			ventana.panelImagen.setBackground(Color.WHITE);
 		}
 		
 	}
